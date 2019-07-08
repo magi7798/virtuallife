@@ -70,9 +70,7 @@ const SimpleForm = props => {
             Submit
         </Button>
         </Button.Group>
-
       </Form.Field>
-
     </Form>
   )
 }

@@ -28,20 +28,15 @@ class Login extends React.Component {
                 <Button color='google plus'>
                   <Icon name='google' /> Google
                 </Button>
-                </Grid.Row>
-                
-                
-                
+                </Grid.Row>      
               </Grid.Column>
             </Grid.Row>
-
           </Grid>
           <Divider vertical>Or</Divider>
         </Segment>
         <Segment textAlign='center' color='teal'>
           <Header>Don't you have an account yet?</Header>
-          <Button content='Start here' icon='signup' size='big' as={Link} to='/signup' color='teal' />
-
+          <Button content='Create Your Account' icon='signup' size='big' as={Link} to='/signup' color='teal' />
         </Segment>
       </Segment.Group>
     );

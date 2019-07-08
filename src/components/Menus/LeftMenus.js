@@ -14,29 +14,34 @@ const MenuStyle = {
   borderRightColor: 'transparent'
 };
 
-const names = ['My Room', 'My Shop'];
-const leftMenuItem = names.map(name => {
-  const path = '/' + name.toLowerCase().replace(/\s/g, '');
-  return (
-    <Menu.Item key={name} name={name} as={Link} to={path} />
-  );
-});
-
 class LeftMenus extends React.Component {
   /*
   handleItemClick = (e) => {
     console.log(e.target.text + ' is clicked');        
   };
   */
+
+  leftMenuItems = () => {
+    const ItemNames = ['My Room', 'My Shop'];
+    return ItemNames.map(item => {
+      const path = '/' + item.toLowerCase().replace(/\s/g, '');
+      return (
+        <Menu.Item key={item} name={item} as={Link} to={path} />
+      );
+    });
+  };
+
   render() {
     return (
+     
       <div className='ui left fixed vertical menu' style={divStyle} stackable='true'>
         <div style={{ marginTop: '30px' }}>
           <Menu pointing secondary vertical fluid style={MenuStyle}>
-            {leftMenuItem}
+            {this.leftMenuItems()}
           </Menu>
         </div>
       </div>
+      
     );
   };
 };

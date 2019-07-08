@@ -3,16 +3,18 @@ import { Container, Grid } from 'semantic-ui-react';
 import { Router, Route, Switch } from 'react-router-dom';
 
 import history from '../history';
-const Header = lazy(() => import('./Menu/Header'));
-const LeftMenus = lazy(() => import('./Menu/LeftMenus'));
-const Login = lazy(() => import('./Signup/Login'));
-const Signup = lazy(() => import('./Signup'));
+const Header = lazy(() => import('./Menus/Header'));
+const LeftMenus = lazy(() => import('./Menus/LeftMenus'));
+const Signin = lazy(() => import('./Join/Signin'));
+const Signup = lazy(() => import('./Join/Signup'));
 const Home = lazy(() => import('./Home'));
 const Shops = lazy(() => import('./Shops'));
 const Products = lazy(() => import('./Products'));
 const MyCart = lazy(() => import('./MyCart'));
+const Settings = lazy(() => import('./Settings'));
 const MyRoom = lazy(() => import('./MyRoom'));
 const MyShop = lazy(() => import('./MyShop'));
+
 /*
 const components = [
   null, Login, Signup, Home, Shops, Products, MyCart, MyRoom, MyShop
@@ -53,11 +55,12 @@ class App extends React.Component {
                     <Switch>
                       {/*routes*/}
                       <Route path={'/'} exact component={Home} />
-                      <Route path={'/login'} exact component={Login} />
+                      <Route path={'/signin'} exact component={Signin} />
                       <Route path={'/signup'} exact component={Signup} />
                       <Route path={'/shops'} exact component={Shops} />
                       <Route path={'/products'} exact component={Products} />
                       <Route path={'/mycart'} exact component={MyCart} />
+                      <Route path={'/settings'} exact component={Settings} />
                       <Route path={'/myroom'} exact component={MyRoom} />
                       <Route path={'/myshop'} exact component={MyShop} />
                     </Switch>
