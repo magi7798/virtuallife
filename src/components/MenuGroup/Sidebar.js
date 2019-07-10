@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
+import { InitialMenus, MemberMenus, SettingsMenus } from './MenuLists/SidebarLists';
+
 const divStyle = {
   textAlign: 'center',
   width: '11%',
@@ -16,41 +18,41 @@ const MenuStyle = {
 };
 
 class LeftMenus extends React.Component {
-  
+  /*
   handleItemClick = (e) => {
     console.log(e.target.text + ' is clicked');        
   };
-  
+  */
 
-  leftMenuItems = () => {
-    const items = ['Home', 'My Space', 'My Shop'];
-    let path;
-    return items.map((item, index) => {
-      if (item === 'Home') {
-        path = '/'
-      } else {
-        path = '/' + item.toLowerCase().replace(/\s/g, '');
-      };
+  /*
+  sidebarChanger = () => {
+    let changeMenus = InitialMenus;
+    if (this.props.name === 'Settings' )
+      changeMenus = SettingsMenus;
+    return changeMenus;
+  };
+  */
 
+  sidebarMenus = () => {
+    const menus = MemberMenus;
+
+    return menus.map((menu, index) => {
       return (
-        <Menu.Item key={index} name={item} as={Link} to={path} />
+        <Menu.Item key={index} name={menu.childnode} as={Link} to={menu.path} />
       );
     });
-  };  
+  };
 
   render() {
-    return (     
+    return (
       <div className='ui left fixed vertical menu' style={divStyle} stackable='true'>
         <div style={{ marginTop: '5%' }}>
           <Menu pointing secondary vertical fluid style={MenuStyle}>
-            {this.leftMenuItems()}
+            {this.sidebarMenus()}
           </Menu>
         </div>
-      </div>      
+      </div>
     );
-    /*
-    return <Menu.Item name={this.props.item} as={Link} to={this.props.path} />
-    */
   };
 };
 

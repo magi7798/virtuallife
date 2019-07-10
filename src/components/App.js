@@ -60,8 +60,7 @@ class App extends React.Component {
                 </Grid.Column> : undefined}
                 <Grid.Column width={12} style={routeColumnStyle}>
                   <Switch>
-                    {/*this.routes()*/}
-                    
+                    {/*this.routes()*/}                    
                     <Route path={'/'} exact component={Home} />
                     <Route path={'/signin'} exact component={Signin} />
                     <Route path={'/signup'} exact component={Signup} />

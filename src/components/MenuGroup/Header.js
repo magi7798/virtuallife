@@ -1,8 +1,10 @@
-import React, { Fragment } from 'react';
-import { Menu, Input, Label, Icon, Image } from 'semantic-ui-react';
+import React from 'react';
+import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-//import { headerLeft, headerRight } from './MenuLists';
+import HeaderLeft from './MenuLists/HeaderLeft';
+import HeaderRight from './MenuLists/HeaderRight';
+import Sidebar from './Sidebar';
 
 const menuStyle = {
   backgroundColor: 'Ivory',
@@ -20,69 +22,38 @@ const menuItemStyle = {
 };
 
 class Header extends React.Component {
-  /*
-  handleItemClick = (name) => {
-    console.log('clicked ', name);
-  };
-  */
-
-  setChildNode = (menu) => {
-    let childnode;
-    if (menu === 'Logo') {
-      childnode = <Image src='./images/applogo4_1.png' alt='logo' centered size='small' />;
-    } else if (menu === 'Searchbar') {
-      childnode = <Input icon='search' placeholder='Search...' />;
-    } else if (menu === 'My Moneybox') {
-      childnode =
-        <Fragment>
-          My Moneybox:
-          <Label size='big' style={{ backgroundColor: 'DarkGoldenrod' }}><Icon name='dollar sign' />100.00</Label>
-        </Fragment>
-    } else {
-      childnode = menu;
-    };
-
-    return childnode;
-  };
-
-  setPath = (menu) => {
-    let path;
-    if (menu === 'Logo') {
-      path = '/';
-    } else if (menu === 'Logout') {
-      path = '/signin';
-    } else if (menu === 'Settings') {
-      path = '/settings/account';
-    } else {
-      path = '/' + menu.toLowerCase().replace(/\s/g, '');
-    };
-    return path;
-  };
   
+  handleItemClick = (menu) => {
+    console.log('clicked ', menu.name);
+  }; 
+
   setLink = (menu) => {
-    let path = this.setPath(menu);
-    if ( menu === 'Searchbar' || menu === 'My Moneybox') {
-      return <Fragment>{this.setChildNode(menu)}</Fragment>;
+    if ( menu.name === 'Searchbar' || menu.name === 'My Moneybox') {
+      return menu.childnode;
     } else {
-      return <Link to={path} style={{color: 'Goldenrod'}}>{this.setChildNode(menu)}</Link>;
+      return (
+        <Link to={menu.path} onClick={() => this.handleItemClick(menu)} style={{color: 'Goldenrod'}}>
+          {menu.childnode}
+        </Link>
+      );
     };
   };
 
   renderTabs = (menus) => {
     return menus.map((menu, index) => (
-      <Menu.Item key={index} name={menu} style={menuItemStyle}>
+      <Menu.Item key={index} name={menu.name} style={menuItemStyle}>
         {this.setLink(menu)}
       </Menu.Item>
     ));
   };
 
   renderLeftMenu = () => {
-    const MenuNames = ['Logo', 'Searchbar', 'Shops', 'Products'];
+    const MenuNames = HeaderLeft;
     return this.renderTabs(MenuNames);
   };
 
   renderRightMenu = () => {
-    const MenuNames = ['My Moneybox', 'My Cart', 'Sign in', 'Settings'];
+    const MenuNames = HeaderRight;
     return this.renderTabs(MenuNames);
   };
 
