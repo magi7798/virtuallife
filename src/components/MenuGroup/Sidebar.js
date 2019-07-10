@@ -16,16 +16,16 @@ const MenuStyle = {
 };
 
 class LeftMenus extends React.Component {
-  /*
+  
   handleItemClick = (e) => {
     console.log(e.target.text + ' is clicked');        
   };
-  */
+  
 
   leftMenuItems = () => {
     const items = ['Home', 'My Space', 'My Shop'];
     let path;
-    return items.map(item => {
+    return items.map((item, index) => {
       if (item === 'Home') {
         path = '/'
       } else {
@@ -33,10 +33,10 @@ class LeftMenus extends React.Component {
       };
 
       return (
-        <Menu.Item key={item} name={item} as={Link} to={path} />
+        <Menu.Item key={index} name={item} as={Link} to={path} />
       );
     });
-  };
+  };  
 
   render() {
     return (     
@@ -48,6 +48,9 @@ class LeftMenus extends React.Component {
         </div>
       </div>      
     );
+    /*
+    return <Menu.Item name={this.props.item} as={Link} to={this.props.path} />
+    */
   };
 };
 

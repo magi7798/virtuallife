@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import { Menu, Input, Label, Icon, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+//import { headerLeft, headerRight } from './MenuLists';
+
 const menuStyle = {
   backgroundColor: 'Ivory',
   paddingLeft: '40px',
@@ -56,7 +58,7 @@ class Header extends React.Component {
     };
     return path;
   };
-
+  
   setLink = (menu) => {
     let path = this.setPath(menu);
     if ( menu === 'Searchbar' || menu === 'My Moneybox') {
@@ -67,8 +69,8 @@ class Header extends React.Component {
   };
 
   renderTabs = (menus) => {
-    return menus.map(menu => (
-      <Menu.Item key={menu} name={menu} style={menuItemStyle}>
+    return menus.map((menu, index) => (
+      <Menu.Item key={index} name={menu} style={menuItemStyle}>
         {this.setLink(menu)}
       </Menu.Item>
     ));

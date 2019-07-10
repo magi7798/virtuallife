@@ -3,8 +3,9 @@ import { Container, Grid } from 'semantic-ui-react';
 import { Router, Route, Switch } from 'react-router-dom';
 
 import history from '../history';
-const Header = lazy(() => import('./MenuBars/Header'));
-const LeftMenus = lazy(() => import('./MenuBars/LeftMenus'));
+const Header = lazy(() => import('./MenuGroup/Header'));
+const Sidebar = lazy(() => import('./MenuGroup/Sidebar'));
+//const MenuChanger = lazy(() => import('./MenuGroup/MenuChanger'));
 const Signin = lazy(() => import('./Join/Signin'));
 const Signup = lazy(() => import('./Join/Signup'));
 const Home = lazy(() => import('./Home'));
@@ -12,38 +13,39 @@ const Shops = lazy(() => import('./Shops'));
 const Products = lazy(() => import('./Products'));
 const MyCart = lazy(() => import('./MyCart'));
 const Settings = lazy(() => import('./Settings/Account'));
-const MyRoom = lazy(() => import('./MyRoom'));
+const MySpace = lazy(() => import('./MySpace'));
 const MyShop = lazy(() => import('./MyShop'));
 
 const routeColumnStyle = {
   marginTop: '70px'
 };
 
-/*
-const components = [
-  null, Login, Signup, Home, Shops, Products, MyCart, MyRoom, MyShop
-];
-const routes = components.map(componentName => {
-  let path, name;
-  if (componentName === null) {
-    path = '/';
-    name = Login;
-  } else {
-    path = '/' + componentName.toString().toLowerCase();
-    name = componentName;
-  }
-  console.log('name: ', name.key);
-  return (
-    <Route key={componentName} path={path} exact component={name} />
-  );
-});
-*/
 class App extends React.Component {
-  state = { signedUser: true }
+  state = { signedUser: true }  
+  /*
+  routes = () => {
+    const components = [
+      Home, Signin, Signup, Shops, Products, MyCart, Settings, MyRoom, MyShop
+    ];
+    return components.map(componentName => {
+      //console.log(componentName);    
+      let path;
+      let name = componentName;
+      if (componentName === 'Settings') {
+        path = '/settings/account';
+      } else {
+        path = '/' + componentName.toString().toLowerCase();
+      }
+      console.log('name: ', name);
+      return (
+        <Route key={componentName} path={path} exact component={name} />
+      );
+    });
+  };
+  */
 
-  render() {
+  render() {    
     return (
-
       <Container style={{ width: '100%' }}>
         <Router history={history}>
           <Suspense fallback={<div>Loading...</div>} >
@@ -53,11 +55,13 @@ class App extends React.Component {
               </Grid.Row>
               <Grid.Row columns={2}>
                 {this.state.signedUser ? <Grid.Column width={3}>
-                  <LeftMenus />
+                  <Sidebar />
+                  {/*<MenuChanger />*/}
                 </Grid.Column> : undefined}
                 <Grid.Column width={12} style={routeColumnStyle}>
                   <Switch>
-                    {/*routes*/}
+                    {/*this.routes()*/}
+                    
                     <Route path={'/'} exact component={Home} />
                     <Route path={'/signin'} exact component={Signin} />
                     <Route path={'/signup'} exact component={Signup} />
@@ -65,8 +69,9 @@ class App extends React.Component {
                     <Route path={'/products'} exact component={Products} />
                     <Route path={'/mycart'} exact component={MyCart} />
                     <Route path={'/settings/account'} exact component={Settings} />
-                    <Route path={'/myroom'} exact component={MyRoom} />
+                    <Route path={'/myspace'} exact component={MySpace} />
                     <Route path={'/myshop'} exact component={MyShop} />
+                    
                   </Switch>
                 </Grid.Column>
               </Grid.Row>
@@ -74,7 +79,6 @@ class App extends React.Component {
           </Suspense>
         </Router>
       </Container>
-
     );
   };
 };
