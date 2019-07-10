@@ -49,6 +49,8 @@ class Header extends React.Component {
       path = '/';
     } else if (menu === 'Logout') {
       path = '/signin';
+    } else if (menu === 'Settings') {
+      path = '/settings/account';
     } else {
       path = '/' + menu.toLowerCase().replace(/\s/g, '');
     };
@@ -84,7 +86,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <Menu borderless attached='top' style={menuStyle}>
+      <Menu fixed='top' borderless style={menuStyle}>
 
         {this.renderLeftMenu()}
 

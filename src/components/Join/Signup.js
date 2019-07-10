@@ -2,9 +2,29 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Form, Button } from 'semantic-ui-react';
 import TimezonePicker from 'react-timezone';
-
+/*
+const FormFields = () => {
+  const fieldLabels = [
+    'Username', 'Password', 'Password Confirmation', 'Email', 'Date of birth', 'Timezone'
+  ];
+  const formfield = fieldLabels.map(label => {
+    return (
+      <Form.Field required key={label}>
+        <label>{label}</label>
+        <Field
+          name="username"
+          component="input"
+          type="text"
+          placeholder="username"
+        />
+      </Form.Field>
+    );
+  });
+  return formfield;
+};
+*/
 const SimpleForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
+  const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Field required>
@@ -43,7 +63,7 @@ const SimpleForm = props => {
           placeholder="Email"
         />
       </Form.Field>
-        
+
       <Form.Field required>
         <label>Date of birth</label>
       </Form.Field>
@@ -57,8 +77,8 @@ const SimpleForm = props => {
             placeholder: 'Select Timezone...',
             name: 'timezone',
           }}
-        /> 
-      </Form.Field>     
+        />
+      </Form.Field>
 
       <Form.Field>
         <Button.Group floated='right'>
@@ -72,9 +92,9 @@ const SimpleForm = props => {
         </Button.Group>
       </Form.Field>
     </Form>
-  )
-}
+  );
+};
 
 export default reduxForm({
   form: 'simple' // a unique identifier for this form
-})(SimpleForm)
+})(SimpleForm);

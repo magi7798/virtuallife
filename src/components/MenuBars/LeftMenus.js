@@ -5,12 +5,13 @@ import { Menu } from 'semantic-ui-react';
 const divStyle = {
   textAlign: 'center',
   width: '11%',
-  marginTop: '3%',
-  borderRight: '15px solid whitesmoke'
+  marginTop: '3.4%',
+  borderRight: '15px solid whitesmoke',
+  backgroundColor: 'GhostWhite'
 };
 
 const MenuStyle = {
-  fontSize: '20px',
+  fontSize: '18px',
   borderRightColor: 'transparent'
 };
 
@@ -22,9 +23,15 @@ class LeftMenus extends React.Component {
   */
 
   leftMenuItems = () => {
-    const ItemNames = ['My Room', 'My Shop'];
-    return ItemNames.map(item => {
-      const path = '/' + item.toLowerCase().replace(/\s/g, '');
+    const items = ['Home', 'My Space', 'My Shop'];
+    let path;
+    return items.map(item => {
+      if (item === 'Home') {
+        path = '/'
+      } else {
+        path = '/' + item.toLowerCase().replace(/\s/g, '');
+      };
+
       return (
         <Menu.Item key={item} name={item} as={Link} to={path} />
       );
@@ -32,16 +39,14 @@ class LeftMenus extends React.Component {
   };
 
   render() {
-    return (
-     
+    return (     
       <div className='ui left fixed vertical menu' style={divStyle} stackable='true'>
-        <div style={{ marginTop: '30px' }}>
+        <div style={{ marginTop: '5%' }}>
           <Menu pointing secondary vertical fluid style={MenuStyle}>
             {this.leftMenuItems()}
           </Menu>
         </div>
-      </div>
-      
+      </div>      
     );
   };
 };
