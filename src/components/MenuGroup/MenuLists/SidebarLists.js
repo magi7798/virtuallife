@@ -1,3 +1,6 @@
+import React, { Fragment } from 'react';
+import { Button, Icon } from 'semantic-ui-react';
+
 // ['Home', 'My Space', 'My Shop']
 export const InitialMenus = [
   {
@@ -8,7 +11,14 @@ export const InitialMenus = [
   {
     name: 'Signin',
     path: '/signin',
-    childnode: 'Sign in'
+    childnode: 
+      <Fragment>
+        <p>Sign in to enjoy virtual life.</p>
+        <Button basic color='blue'>
+          <Icon name='user' />
+          Sign in
+        </Button>
+      </Fragment>
   }
 ];
 
@@ -37,3 +47,12 @@ export const SettingsMenus = [
     childnode: 'Account'
   }
 ];
+
+export const CategoryMenus = [
+  ...MemberMenus,
+  {
+    name: 'Shop Category',
+    path: null,
+    childnode: 'Category'
+  }
+]

@@ -17,11 +17,12 @@ const MySpace = lazy(() => import('./MySpace'));
 const MyShop = lazy(() => import('./MyShop'));
 
 const routeColumnStyle = {
-  marginTop: '70px'
+  marginTop: '70px',
+  paddingLeft: '70px'
 };
 
 class App extends React.Component {
-  state = { signedUser: true }  
+
   /*
   routes = () => {
     const components = [
@@ -54,11 +55,10 @@ class App extends React.Component {
                 <Header />
               </Grid.Row>
               <Grid.Row columns={2}>
-                {this.state.signedUser ? <Grid.Column width={3}>
-                  <Sidebar />
-                  {/*<MenuChanger />*/}
-                </Grid.Column> : undefined}
-                <Grid.Column width={12} style={routeColumnStyle}>
+                <Grid.Column width={2}>
+                  <Sidebar />                  
+                </Grid.Column>
+                <Grid.Column width={13} style={routeColumnStyle}>
                   <Switch>
                     {/*this.routes()*/}                    
                     <Route path={'/'} exact component={Home} />
@@ -69,8 +69,7 @@ class App extends React.Component {
                     <Route path={'/mycart'} exact component={MyCart} />
                     <Route path={'/settings/account'} exact component={Settings} />
                     <Route path={'/myspace'} exact component={MySpace} />
-                    <Route path={'/myshop'} exact component={MyShop} />
-                    
+                    <Route path={'/myshop'} exact component={MyShop} />                    
                   </Switch>
                 </Grid.Column>
               </Grid.Row>

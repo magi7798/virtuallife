@@ -1,20 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+import { fetchSidebarMenus } from '../../actions';
 import HeaderLeft from './MenuLists/HeaderLeft';
 import HeaderRight from './MenuLists/HeaderRight';
-import Sidebar from './Sidebar';
 
 const menuStyle = {
   backgroundColor: 'Ivory',
-  paddingLeft: '40px',
+  paddingLeft: '5px',
   paddingRight: '40px'
 };
 
 const menuItemStyle = {
-  paddingTop: '5px',
-  paddingBottom: '5px',
+  paddingTop: '10px',
+  paddingBottom: '10px',
   paddingLeft: '15px',
   paddingRight: '10px',
   fontSize: '16px',
@@ -25,6 +26,7 @@ class Header extends React.Component {
   
   handleItemClick = (menu) => {
     console.log('clicked ', menu.name);
+    this.props.fetchSidebarMenus(menu.path);
   }; 
 
   setLink = (menu) => {
@@ -73,4 +75,4 @@ class Header extends React.Component {
   };
 };
 
-export default Header;
+export default connect(null, { fetchSidebarMenus })(Header);

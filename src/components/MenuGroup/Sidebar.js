@@ -1,13 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
-import { InitialMenus, MemberMenus, SettingsMenus } from './MenuLists/SidebarLists';
+import { InitialMenus, MemberMenus, SettingsMenus, CategoryMenus } from './MenuLists/SidebarLists';
 
 const divStyle = {
   textAlign: 'center',
   width: '11%',
-  marginTop: '3.4%',
+  marginTop: '4%',
   borderRight: '15px solid whitesmoke',
   backgroundColor: 'GhostWhite'
 };
@@ -32,13 +33,31 @@ class LeftMenus extends React.Component {
     return changeMenus;
   };
   */
+  whichPage = () => {
+    let menus;
+    const { page } = this.props;
+    console.log('page: ', page);
+    if ( page === '/settings/account') {
+      menus = SettingsMenus;
+    } else if ( page === '/shops' || page === '/products') {
+      menus = CategoryMenus;
+    } else if ( page === '/') {
+      menus = MemberMenus;
+    } else {
+      menus = InitialMenus;
+    };
+    return menus;  
+        
+  };
 
   sidebarMenus = () => {
-    const menus = MemberMenus;
+    const  menus = this.whichPage();    
 
     return menus.map((menu, index) => {
       return (
-        <Menu.Item key={index} name={menu.childnode} as={Link} to={menu.path} />
+        <Menu.Item key={index} as={Link} to={menu.path} >
+          {menu.childnode}
+        </Menu.Item>
       );
     });
   };
@@ -56,4 +75,8 @@ class LeftMenus extends React.Component {
   };
 };
 
-export default LeftMenus;
+const mapStateToProps = (state) => {
+  return { page: state.page }
+};
+
+export default connect( mapStateToProps )(LeftMenus);
