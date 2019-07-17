@@ -19,20 +19,7 @@ const MenuStyle = {
 };
 
 class LeftMenus extends React.Component {
-  /*
-  handleItemClick = (e) => {
-    console.log(e.target.text + ' is clicked');        
-  };
-  */
-
-  /*
-  sidebarChanger = () => {
-    let changeMenus = InitialMenus;
-    if (this.props.name === 'Settings' )
-      changeMenus = SettingsMenus;
-    return changeMenus;
-  };
-  */
+  
   whichPage = () => {
     let menus;
     const { page } = this.props;

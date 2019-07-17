@@ -5,9 +5,9 @@ import { Router, Route, Switch } from 'react-router-dom';
 import history from '../history';
 const Header = lazy(() => import('./MenuGroup/Header'));
 const Sidebar = lazy(() => import('./MenuGroup/Sidebar'));
-//const MenuChanger = lazy(() => import('./MenuGroup/MenuChanger'));
 const Signin = lazy(() => import('./Join/Signin'));
 const Signup = lazy(() => import('./Join/Signup'));
+const Search = lazy(() => import('./Search'));
 const Home = lazy(() => import('./Home'));
 const Shops = lazy(() => import('./Shops'));
 const Products = lazy(() => import('./Products'));
@@ -64,6 +64,7 @@ class App extends React.Component {
                     <Route path={'/'} exact component={Home} />
                     <Route path={'/signin'} exact component={Signin} />
                     <Route path={'/signup'} exact component={Signup} />
+                    <Route path={'/search/:keyword'} exact component={Search} />
                     <Route path={'/shops'} exact component={Shops} />
                     <Route path={'/products'} exact component={Products} />
                     <Route path={'/mycart'} exact component={MyCart} />
