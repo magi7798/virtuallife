@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form';
 
-import { PageStatus } from './sidebarReducers';
+import pageStatus from './sidebarReducers';
+import searchReducers from './searchReducers';
+import sortReducers from './sortReducers';
 
 export default combineReducers({  
   form: formReducer,
-  page: PageStatus
+  page: pageStatus,
+  search: searchReducers,
+  sort: sortReducers
 });

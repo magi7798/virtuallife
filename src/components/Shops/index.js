@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import { Header, Container, Item, Label, Popup, Select } from 'semantic-ui-react';
 
-import Shoplists from './ShopLists';
-import SortOptions from './SortOpt';
+import sources from './shopSources';
+import sortOpts from './sortOpts';
 
 class Shops extends React.Component {
 
-  renderLists = Shoplists.map((list, index) => {
+  renderLists = sources.map((list, index) => {
     return (
       <Item key={index}>
         <Item.Image src={list.imageSrc} />
@@ -19,7 +19,7 @@ class Shops extends React.Component {
           <Item.Description>
             {list.description}
           </Item.Description>
-          <Item.Extra verticalAlign='bottom'>
+          <Item.Extra>
             <Label.Group>
             <Popup content='Visitor' trigger={<Label color='blue' icon='users' detail='214' width='10px' />} />
               
@@ -35,13 +35,13 @@ class Shops extends React.Component {
   render() {
     return (
       <Fragment>
-        <Header as='h4' style={{ fontSize: '30px', marginBottom: '5px' }} dividing>
+        <Header as='h4' style={{ fontSize: '20px', marginBottom: '5px' }} dividing>
           SHOPS
         </Header>
         <Container textAlign='right'>
         
           <pre style={{ fontSize: '130' }}>
-            Sort by: <Select placeholder='Visitor: High to Low' options={SortOptions} />
+            Sort by: <Select options={sortOpts} defaultValue='name'/>
           </pre>
           
         </Container>

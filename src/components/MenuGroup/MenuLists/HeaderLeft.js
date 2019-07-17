@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
-import { Image, Input, Icon } from 'semantic-ui-react';
+import { Image, Icon } from 'semantic-ui-react';
+
+import SearchBar from '../../Search/SearchBar';
 
 // ['Logo', 'Searchbar', 'Shops', 'Products']
 export default [
@@ -8,11 +10,13 @@ export default [
     path: '/',
     childnode: <Image src='./images/applogo4_1.png' alt='logo' centered size='small' />
   },
+  
   {
     name: 'Searchbar',
     path: '',
-    childnode: <Input icon='search' placeholder='Search...' style={{ width: '300px' }} />
+    childnode: <SearchBar />
   },
+  
   {
     name: 'Shops',
     path: '/shops',

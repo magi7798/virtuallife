@@ -1,4 +1,4 @@
-export const PageStatus = (state = '', action) => {
+export default (state = '', action) => {
   switch (action.type) {
     case 'PAGE_STATUS':
       return action.payload;

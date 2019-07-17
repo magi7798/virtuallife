@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 import { Grid, Card, Image, Icon, Header, Advertisement } from 'semantic-ui-react';
 import ImageGallery from 'react-image-gallery';
 
-import images from './BannerImages';
-import { bestSpaces } from './BestLists';
+import images from './bannerImages';
+import { bestSpaces } from './bestLists';
 
 const columnStyle = {
   paddingLeft: '5px',
