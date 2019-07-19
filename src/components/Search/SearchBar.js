@@ -19,7 +19,11 @@ const sources = _.concat(itemSources, shopSources);
 class SearchItems extends React.Component {
 
   handleSearchChange = (e, { value }) => {
+<<<<<<< HEAD
     //console.log('value: ',  allvalue );
+=======
+    
+>>>>>>> 91c3807dee3eae93bbc49a83eab75cb78c466941
     this.props.getSearchValue(value);
 
     setTimeout(() => {
@@ -45,7 +49,11 @@ class SearchItems extends React.Component {
         <Button type='submit' as={Link} to={`/search/${_.escapeRegExp(this.props.value)}`}>
           Search
         </Button>
+<<<<<<< HEAD
       </Input>
+=======
+      </Input>      
+>>>>>>> 91c3807dee3eae93bbc49a83eab75cb78c466941
     );
   };
 };
@@ -56,4 +64,8 @@ const mapStateToProps = (state) => ({
   results: state.search.results
 })
 
+<<<<<<< HEAD
 export default connect( mapStateToProps, { getSearchValue, getSearchResults })(SearchItems);
+=======
+export default connect( mapStateToProps, { getSearchValue, getSearchResults })(SearchItems);
+>>>>>>> 91c3807dee3eae93bbc49a83eab75cb78c466941
