@@ -2,11 +2,12 @@ import _ from 'lodash';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Input, Select, Button } from 'semantic-ui-react';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 import itemSources from '../Products/itemSources';
 import shopSources from '../Shops/shopSources';
-import { getSearchValue, getSearchResults } from '../../actions';
+import ItemForm from '../Products/ItemForm';
+//import { getSearchValue, getSearchResults } from '../../actions';
 
 const options = [
   { key: 'all', text: 'All', value: 'all' },
@@ -14,58 +15,80 @@ const options = [
   { key: 'products', text: 'Products', value: 'products' },
 ];
 
+const INITIAL_STATE = {
+  isLoading: false,
+  value: '',
+  results: []
+};
+
 const sources = _.concat(itemSources, shopSources);
 
 class SearchItems extends React.Component {
 
+  state = INITIAL_STATE;
+
   handleSearchChange = (e, { value }) => {
-<<<<<<< HEAD
-    //console.log('value: ',  allvalue );
-=======
-    
->>>>>>> 91c3807dee3eae93bbc49a83eab75cb78c466941
-    this.props.getSearchValue(value);
+    console.log('All props: ',  value );
+    this.setState({ isLoading: true, value });
 
     setTimeout(() => {
-      if (this.props.value.length < 1)        
-        return this.props;
+      if (value.length < 1) return this.setState(INITIAL_STATE)
 
-      const re = new RegExp(_.escapeRegExp(this.props.value), 'i');
-      const isMatch = result => re.test(result.item);
-      
-      this.props.getSearchResults(_.filter(sources, isMatch));
-    }, 300);    
-  };
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+      const isMatch = result => {
+        //console.log('isMatch result', result)
+        return re.test(result.item);        
+      }
 
+      this.setState({
+        isLoading: false,
+        results: _.filter(sources, isMatch),
+      })
+    }, 300)
+  }
+
+  handleOnSubmit = (results) => {
+    console.log(`submitted result: `, results);
+  }
+  
   render() {
-    console.log('value: ', this.props.value);
-    console.log('results: ', this.props.results);
+    
+    const { isLoading, results } = this.state;
+
+    console.log('value: ', this.state.value);
+    console.log('results: ', this.state.results);
+
     return (
-      <Input type='text' placeholder='Search...' action loading={this.props.isLoading} onChange={_.debounce(this.handleSearchChange, 500, {
-        leading: true,
-      })}>        
-        <Select compact options={options} defaultValue='All' />
-        <input />
-        <Button type='submit' as={Link} to={`/search/${_.escapeRegExp(this.props.value)}`}>
+      
+      <Input type='text' placeholder='Search...' action loading={isLoading} 
+        onChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+      > 
+
+        <Select compact options={options} defaultValue='All' />        
+        <input />        
+        <Button type='submit' as={Link} to={`/search/${_.escapeRegExp(this.state.value)}`}
+        onClick={() => this.handleOnSubmit(results)}>
           Search
         </Button>
-<<<<<<< HEAD
+
       </Input>
-=======
-      </Input>      
->>>>>>> 91c3807dee3eae93bbc49a83eab75cb78c466941
+      
     );
   };
 };
 
-const mapStateToProps = (state) => ({
-  isLoading: state.search.isLoading,
-  value: state.search.value,
-  results: state.search.results
-})
+class SearchResults extends React.Component {
 
-<<<<<<< HEAD
-export default connect( mapStateToProps, { getSearchValue, getSearchResults })(SearchItems);
-=======
-export default connect( mapStateToProps, { getSearchValue, getSearchResults })(SearchItems);
->>>>>>> 91c3807dee3eae93bbc49a83eab75cb78c466941
+  componentDidUpdate = () => {
+    //console.log('searched results: ', this.state.results);
+  };
+
+  render() {
+    const { results } = this.state;
+    return (
+      <ItemForm sources={results} />
+    );
+  };
+};
+
+export { SearchItems, SearchResults };
