@@ -70,25 +70,10 @@ class SearchItems extends React.Component {
         onClick={() => this.handleOnSubmit(results)}>
           Search
         </Button>
-
       </Input>
       
     );
   };
 };
 
-class SearchResults extends React.Component {
-
-  componentDidUpdate = () => {
-    //console.log('searched results: ', this.state.results);
-  };
-
-  render() {
-    const { results } = this.state;
-    return (
-      <ItemForm sources={results} />
-    );
-  };
-};
-
-export { SearchItems, SearchResults };
+export default SearchItems;
