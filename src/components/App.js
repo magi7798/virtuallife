@@ -15,6 +15,7 @@ const MyCart = lazy(() => import('./MyCart'));
 const Settings = lazy(() => import('./Settings/Account'));
 const MySpace = lazy(() => import('./MySpace'));
 const MyShop = lazy(() => import('./MyShop'));
+const MyMoneybox = lazy(() => import('./MyMoneybox'));
 
 const routeColumnStyle = {
   marginTop: '70px',
@@ -70,7 +71,8 @@ class App extends React.Component {
                     <Route path={'/mycart'} exact component={MyCart} />
                     <Route path={'/settings/account'} exact component={Settings} />
                     <Route path={'/myspace'} exact component={MySpace} />
-                    <Route path={'/myshop'} exact component={MyShop} />                    
+                    <Route path={'/myshop'} exact component={MyShop} />  
+                    <Route path={'/mymoneybox'} exact component={MyMoneybox} />                  
                   </Switch>
                 </Grid.Column>
               </Grid.Row>

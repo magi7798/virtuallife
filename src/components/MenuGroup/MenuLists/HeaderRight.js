@@ -5,7 +5,7 @@ import { Label, Icon, Button } from 'semantic-ui-react';
 export default [
   {
     name: 'My Moneybox',
-    path: '',
+    path: '/mymoneybox',
     childnode:
       <Button as='div' labelPosition='right'>
         <Button color='brown'>

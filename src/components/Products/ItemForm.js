@@ -42,7 +42,7 @@ class ItemForm extends React.Component {
           <Item.Content>
             <Item.Header as='a'>{list.item}</Item.Header>
             <Item.Description>
-              {list.price}
+              Price: ${list.price}
             </Item.Description>
             <Item.Meta>
               <span>{list.company}</span>
@@ -74,7 +74,7 @@ class ItemForm extends React.Component {
             </pre>
 
           </Container>
-          <Item.Group divided>
+          <Item.Group divided unstackable>
 
             {this.RenderLists(sortby, orders)}
 

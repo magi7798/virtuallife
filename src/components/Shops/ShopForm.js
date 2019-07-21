@@ -92,7 +92,7 @@ class Shops extends React.Component {
             </pre>
 
           </Container>
-          <Item.Group divided>
+          <Item.Group divided unstackable>
 
             {this.RenderLists(sortby, orders)}
 
