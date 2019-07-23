@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import { fetchSidebarMenus } from '../../actions';
 import HeaderLeft from './MenuLists/HeaderLeft';
 import HeaderRight from './MenuLists/HeaderRight';
+import { fetchSidebarMenus } from '../../actions';
 
 const menuStyle = {
   backgroundColor: 'Ivory',

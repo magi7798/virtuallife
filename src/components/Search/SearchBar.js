@@ -2,12 +2,10 @@ import _ from 'lodash';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Input, Select, Button } from 'semantic-ui-react';
-//import { connect } from 'react-redux';
 
 import itemSources from '../Products/itemSources';
 import shopSources from '../Shops/shopSources';
-import ItemForm from '../Products/ItemForm';
-//import { getSearchValue, getSearchResults } from '../../actions';
+//import ItemPageStyle from '../Products/ItemPageStyle';
 
 const options = [
   { key: 'all', text: 'All', value: 'all' },
@@ -28,7 +26,7 @@ class SearchItems extends React.Component {
   state = INITIAL_STATE;
 
   handleSearchChange = (e, { value }) => {
-    console.log('All props: ',  value );
+    console.log('All props: ',  { value } );
     this.setState({ isLoading: true, value });
 
     setTimeout(() => {
@@ -36,7 +34,6 @@ class SearchItems extends React.Component {
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
       const isMatch = result => {
-        //console.log('isMatch result', result)
         return re.test(result.item);        
       }
 
@@ -45,24 +42,23 @@ class SearchItems extends React.Component {
         results: _.filter(sources, isMatch),
       })
     }, 300)
-  }
+  };
 
   handleOnSubmit = (results) => {
     console.log(`submitted result: `, results);
-  }
+    //this.props.fetchResults(results);
+  };
   
   render() {
     
     const { isLoading, results } = this.state;
 
-    console.log('value: ', this.state.value);
-    console.log('results: ', this.state.results);
+    //console.log('value: ', this.state.value);
+    //console.log('results: ', this.state.results);
 
     return (
-      
       <Input type='text' placeholder='Search...' action loading={isLoading} 
-        onChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-      > 
+        onChange={_.debounce(this.handleSearchChange, 500, { leading: true })}>
 
         <Select compact options={options} defaultValue='All' />        
         <input />        
@@ -70,8 +66,8 @@ class SearchItems extends React.Component {
         onClick={() => this.handleOnSubmit(results)}>
           Search
         </Button>
-      </Input>
-      
+
+      </Input>     
     );
   };
 };

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import ItemForm from './ItemForm';
+import ItemPageStyle from './ItemPageStyle';
 import itemSources from './itemSources';
 
 class Products extends React.Component {
 
   render() {
     return (
-      <ItemForm sources={itemSources}/>
+      <ItemPageStyle sources={itemSources}/>
     );
   };
 };

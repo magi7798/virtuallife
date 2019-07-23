@@ -1,13 +1,13 @@
 import React from 'react';
 
-import ShopForm from './ShopForm';
+import ShopPageStyle from './ShopPageStyle';
 import shopSources from './shopSources';
 
 class Products extends React.Component {
 
   render() {
     return (
-      <ShopForm sources={shopSources}/>
+      <ShopPageStyle sources={shopSources}/>
     );
   };
 };

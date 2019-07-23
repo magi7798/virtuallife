@@ -15,7 +15,7 @@ const INITIAL_STATE = {
   orders: 'desc'
 };
 
-class Shops extends React.Component {
+class ShopPage extends React.Component {
 
   state = INITIAL_STATE;
 
@@ -34,10 +34,10 @@ class Shops extends React.Component {
     const thousand = 1000;
     const million = 1000000;
     const counts = _.isNumber(num);
-    if ( counts >= thousand && counts < million) {
-      showNum = _.round(counts/thousand) + 'K';
+    if (counts >= thousand && counts < million) {
+      showNum = _.round(counts / thousand) + 'K';
     } else if (counts >= million) {
-      showNum = _.round(counts/thousand, 1) + 'M';
+      showNum = _.round(counts / thousand, 1) + 'M';
       console.log(showNum);
     } else {
       showNum = counts;
@@ -77,29 +77,29 @@ class Shops extends React.Component {
     return sortedLists;
   };
 
-    render() {
-      const { value, sortby, orders } = this.state;
-      return (
-        <Fragment>
-          <Header as='h4' style={{ fontSize: '20px', marginBottom: '5px' }} dividing>
-            SHOPS
+  render() {
+    const { value, sortby, orders } = this.state;
+    return (
+      <Fragment>
+        <Header as='h4' style={{ fontSize: '20px', marginBottom: '5px' }} dividing>
+          SHOPS
         </Header>
-          <Container textAlign='right'>
+        <Container textAlign='right'>
 
-            <pre style={{ fontSize: '130' }}>
-              Sort by: <Dropdown selection options={sortOpts} defaultValue={value}
-                onChange={this.handleSortedSources} />
-            </pre>
+          <pre style={{ fontSize: '130' }}>
+            Sort by: <Dropdown selection options={sortOpts} defaultValue={value}
+              onChange={this.handleSortedSources} />
+          </pre>
 
-          </Container>
-          <Item.Group divided unstackable>
+        </Container>
+        <Item.Group divided unstackable>
 
-            {this.RenderLists(sortby, orders)}
+          {this.RenderLists(sortby, orders)}
 
-          </Item.Group>
-        </Fragment>
-      );
-    };
+        </Item.Group>
+      </Fragment>
+    );
   };
+};
 
-  export default Shops;
+export default ShopPage;

@@ -1,0 +1,26 @@
+ ex) search samsung
+1. backend will give results of the search 'samsung' and url will be like localhost:3000/ -> 
+result: [{
+  name: 'samsung galaxy 10 5g'
+  code: 'samsung_sawfwqsd_10_5g' -> for simplify this, just use c_1,c_2,c_3,c_4,c_5 
+},
+{....}]
+2. if user select 'samsung galaxy 10 5g', 
+frontend request to backend with 'code' and url will be like localhost:3000/search?code=c_1
+
+result: [{
+  price: '$123',
+  title: 'samsung galaxy 10 5g'
+  body: '....',
+  item_id: 'i_1',
+  identity: 'shop',
+  img_url: '....'
+},
+{ ... }]
+
+3. if user select one item -> localhost:3000?i=shop&item_id=i_1
+frontend request to backend with 'item_id' and 'identity'
+
+result: {
+  item detail infos: .....
+}

@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   orders: 'desc'
 };
 
-class ItemForm extends React.Component {
+class ItemPage extends React.Component {
 
   state = INITIAL_STATE;
 
@@ -84,4 +84,4 @@ class ItemForm extends React.Component {
     };
   };
 
-  export default ItemForm;
+  export default ItemPage;

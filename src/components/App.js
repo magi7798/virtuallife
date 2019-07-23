@@ -7,7 +7,7 @@ const Header = lazy(() => import('./MenuGroup/Header'));
 const Sidebar = lazy(() => import('./MenuGroup/Sidebar'));
 const Signin = lazy(() => import('./Join/Signin'));
 const Signup = lazy(() => import('./Join/Signup'));
-const { SearchResults } = lazy(() => import('./Search/SearchBar'));
+const SearchResults = lazy(() => import('./Search'));
 const Home = lazy(() => import('./Home'));
 const Shops = lazy(() => import('./Shops'));
 const Products = lazy(() => import('./Products'));
@@ -23,56 +23,33 @@ const routeColumnStyle = {
 };
 
 class App extends React.Component {
-
-  /*
-  routes = () => {
-    const components = [
-      Home, Signin, Signup, Shops, Products, MyCart, Settings, MyRoom, MyShop
-    ];
-    return components.map(componentName => {
-      //console.log(componentName);    
-      let path;
-      let name = componentName;
-      if (componentName === 'Settings') {
-        path = '/settings/account';
-      } else {
-        path = '/' + componentName.toString().toLowerCase();
-      }
-      console.log('name: ', name);
-      return (
-        <Route key={componentName} path={path} exact component={name} />
-      );
-    });
-  };
-  */
-
-  render() {    
+  
+  render() {
     return (
       <Container style={{ width: '100%' }}>
         <Router history={history}>
           <Suspense fallback={<div>Loading...</div>} >
             <Grid stackable divided='vertically'>
               <Grid.Row style={{ paddingBottom: '0px' }}>
-                <Header />
+                <Header searchResults={this.setResults} />
               </Grid.Row>
               <Grid.Row columns={2}>
                 <Grid.Column width={2}>
-                  <Sidebar />                  
+                  <Sidebar />
                 </Grid.Column>
                 <Grid.Column width={13} style={routeColumnStyle}>
                   <Switch>
-                    {/*this.routes()*/}                    
                     <Route path={'/'} exact component={Home} />
                     <Route path={'/signin'} exact component={Signin} />
                     <Route path={'/signup'} exact component={Signup} />
-                    <Route path={'/search/:keyword'} exact component={SearchResults} />
+                    <Route path={'/search/:keyword'} exact component={SearchResults} />>
                     <Route path={'/shops'} exact component={Shops} />
                     <Route path={'/products'} exact component={Products} />
                     <Route path={'/mycart'} exact component={MyCart} />
                     <Route path={'/settings/account'} exact component={Settings} />
                     <Route path={'/myspace'} exact component={MySpace} />
-                    <Route path={'/myshop'} exact component={MyShop} />  
-                    <Route path={'/mymoneybox'} exact component={MyMoneybox} />                  
+                    <Route path={'/myshop'} exact component={MyShop} />
+                    <Route path={'/mymoneybox'} exact component={MyMoneybox} />
                   </Switch>
                 </Grid.Column>
               </Grid.Row>
