@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import HeaderLeft from './MenuLists/HeaderLeft';
 import HeaderRight from './MenuLists/HeaderRight';
-import { fetchSidebarMenus } from '../../actions';
+import { sidebarPusher } from '../../actions';
 
 const menuStyle = {
-  backgroundColor: 'Ivory',
+  backgroundColor: 'ivory',
   paddingLeft: '5px',
   paddingRight: '40px'
 };
@@ -23,18 +23,21 @@ const menuItemStyle = {
 };
 
 class Header extends React.Component {
-  
+
+  handleHideClick = () => this.props.sidebarPusher(false)
+  handleShowClick = () => this.props.sidebarPusher(true)
+
   handleItemClick = (menu) => {
     console.log('clicked ', menu.name);
-    this.props.fetchSidebarMenus(menu.path);
-  }; 
+    //this.props.fetchSidebarMenus(menu.path);
+  };
 
   setLink = (menu) => {
-    if ( menu.name === 'Searchbar' || menu.name === 'My Moneybox') {
+    if (menu.name === 'Searchbar' || menu.name === 'My Moneybox') {
       return menu.childnode;
     } else {
       return (
-        <Link to={menu.path} onClick={() => this.handleItemClick(menu)} style={{color: 'Goldenrod'}}>
+        <Link to={menu.path} onClick={() => this.handleItemClick(menu)} style={{ color: 'Goldenrod' }}>
           {menu.childnode}
         </Link>
       );
@@ -61,18 +64,25 @@ class Header extends React.Component {
 
   render() {
     return (
-      <Menu fixed='top' borderless style={menuStyle}>
+      <Fragment>
 
-        {this.renderLeftMenu()}
+        <Menu fixed='top' borderless style={menuStyle}>
 
-        <Menu.Menu position='right'>
+          <Button basic size='mini' onClick={this.handleShowClick}>
+            <Icon name='sidebar' size='large' />
+          </Button>
 
-          {this.renderRightMenu()}
+          {this.renderLeftMenu()}
 
-        </Menu.Menu>
-      </Menu>
+          <Menu.Menu position='right'>
+
+            {this.renderRightMenu()}
+
+          </Menu.Menu>
+        </Menu>
+      </Fragment>
     );
   };
 };
 
-export default connect(null, { fetchSidebarMenus })(Header);
+export default connect(null, { sidebarPusher })(Header);

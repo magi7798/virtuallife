@@ -30,8 +30,8 @@ export default [
     name: 'Sign in',
     path: '/signin',
     childnode:
-      <Button basic color='blue'>
-        <Icon name='user' />
+      <Button basic color='blue' >
+        <Icon name='user'/>
         Sign in
       </Button>
   },

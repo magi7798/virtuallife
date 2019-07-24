@@ -1,6 +1,19 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
-import { Header, Container, Item, Rating, Dropdown } from 'semantic-ui-react';
+import React from 'react';
+import { Grid, Header, Container, Item, Menu, Rating, Dropdown } from 'semantic-ui-react';
+
+const divStyle = {
+  textAlign: 'center',
+  width: '11%',
+  marginTop: '4%',
+  borderRight: '15px solid whitesmoke',
+  backgroundColor: 'GhostWhite'
+};
+
+const MenuStyle = {
+  fontSize: '18px',
+  borderRightColor: 'transparent'
+};
 
 const sortOpts = [
   { key: 'itemAZ', value: 'itemAZ', sortby: 'item', orders: 'asc', text: 'A to Z' },
@@ -22,8 +35,8 @@ class ItemPage extends React.Component {
 
   handleSortedSources = (e, { value }) => {
     //console.log('sort value: ', { value });
-    const sortObj = _.find(sortOpts, { value } );    
-    
+    const sortObj = _.find(sortOpts, { value });
+
     setTimeout(() => {
       //console.log('sortObj: ', sortObj);
       this.setState({ value, sortby: sortObj.sortby, orders: sortObj.orders })
@@ -57,31 +70,46 @@ class ItemPage extends React.Component {
     return sortedLists;
   };
 
-    render() {
-      const { value, sortby, orders } = this.state;
+  render() {
+    const { value, sortby, orders } = this.state;
 
-      return (
-        <Fragment>
-          <Header style={{ fontSize: '20px', marginBottom: '5px' }} dividing>
-            PRODUCTS
-          </Header>
+    return (
+      <Grid>
+        <Grid.Row columns={2} >
+          <Grid.Column width={2}>
+            <div className='ui left fixed vertical menu' style={divStyle} stackable='true'>
+              <div style={{ marginTop: '5%' }}>
+                <Menu pointing secondary vertical fluid style={MenuStyle}>
+                  <Menu.Item>
+                    Category
+                    </Menu.Item>
+                </Menu>
+              </div>
+            </div>
+          </Grid.Column>
+          <Grid.Column width={13}>
+            <Header style={{ fontSize: '20px', marginBottom: '5px' }} dividing>
+              PRODUCTS
+              </Header>
 
-          <Container textAlign='right'>
+            <Container textAlign='right'>
 
-            <pre style={{ fontSize: '130' }}>
-            Sort by: <Dropdown selection options={sortOpts} defaultValue={value}
-              onChange={this.handleSortedSources} />
-            </pre>
+              <pre style={{ fontSize: '130' }}>
+                Sort by: <Dropdown selection options={sortOpts} defaultValue={value}
+                  onChange={this.handleSortedSources} />
+              </pre>
 
-          </Container>
-          <Item.Group divided unstackable>
+            </Container>
+            <Item.Group divided unstackable>
 
-            {this.RenderLists(sortby, orders)}
+              {this.RenderLists(sortby, orders)}
 
-          </Item.Group>
-        </Fragment>
-      );
-    };
+            </Item.Group>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    );
   };
+};
 
-  export default ItemPage;
+export default ItemPage;

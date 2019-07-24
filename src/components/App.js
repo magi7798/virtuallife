@@ -1,10 +1,12 @@
 import React, { lazy, Suspense } from 'react';
-import { Container, Grid } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
+import { Container, Grid, Sidebar, Menu, Segment, Icon } from 'semantic-ui-react';
 
 import history from '../history';
+import { sidebarPusher } from '../actions';
+const SidebarMenus = lazy(() => import('./MenuGroup/SidebarMenus'));
 const Header = lazy(() => import('./MenuGroup/Header'));
-const Sidebar = lazy(() => import('./MenuGroup/Sidebar'));
 const Signin = lazy(() => import('./Join/Signin'));
 const Signup = lazy(() => import('./Join/Signup'));
 const SearchResults = lazy(() => import('./Search'));
@@ -17,43 +19,68 @@ const MySpace = lazy(() => import('./MySpace'));
 const MyShop = lazy(() => import('./MyShop'));
 const MyMoneybox = lazy(() => import('./MyMoneybox'));
 
-const routeColumnStyle = {
-  marginTop: '70px',
-  paddingLeft: '70px'
-};
-
 class App extends React.Component {
-  
+
+  handleSidebarHide = () => this.props.sidebarPusher(false)
+
+  renderContainer = () => {
+    return (
+
+      <Grid centered stackable divided='vertically'>
+        <Grid.Row style={{ paddingBottom: '0px' }}>
+          <Header />
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={15} style={{ marginTop: '70px' }}>
+            <Switch>
+              <Route path={'/'} exact component={Home} />
+              <Route path={'/signin'} exact component={Signin} />
+              <Route path={'/signup'} exact component={Signup} />
+              <Route path={'/search/:keyword'} exact component={SearchResults} />>
+              <Route path={'/shops'} exact component={Shops} />
+              <Route path={'/products'} exact component={Products} />
+              <Route path={'/mycart'} exact component={MyCart} />
+              <Route path={'/settings/account'} exact component={Settings} />
+              <Route path={'/myspace'} exact component={MySpace} />
+              <Route path={'/myshop'} exact component={MyShop} />
+              <Route path={'/mymoneybox'} exact component={MyMoneybox} />
+            </Switch>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+
+    )
+  }
+
   render() {
+    const { visible } = this.props;
     return (
       <Container style={{ width: '100%' }}>
         <Router history={history}>
           <Suspense fallback={<div>Loading...</div>} >
-            <Grid stackable divided='vertically'>
-              <Grid.Row style={{ paddingBottom: '0px' }}>
-                <Header searchResults={this.setResults} />
-              </Grid.Row>
-              <Grid.Row columns={2}>
-                <Grid.Column width={2}>
-                  <Sidebar />
-                </Grid.Column>
-                <Grid.Column width={13} style={routeColumnStyle}>
-                  <Switch>
-                    <Route path={'/'} exact component={Home} />
-                    <Route path={'/signin'} exact component={Signin} />
-                    <Route path={'/signup'} exact component={Signup} />
-                    <Route path={'/search/:keyword'} exact component={SearchResults} />>
-                    <Route path={'/shops'} exact component={Shops} />
-                    <Route path={'/products'} exact component={Products} />
-                    <Route path={'/mycart'} exact component={MyCart} />
-                    <Route path={'/settings/account'} exact component={Settings} />
-                    <Route path={'/myspace'} exact component={MySpace} />
-                    <Route path={'/myshop'} exact component={MyShop} />
-                    <Route path={'/mymoneybox'} exact component={MyMoneybox} />
-                  </Switch>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
+
+            <Sidebar.Pushable as={Segment}>
+              <Sidebar
+                as={Menu}
+                animation='overlay'
+                icon='labeled'
+                inverted
+                onHide={this.handleSidebarHide}
+                vertical
+                visible={visible}
+                width='thin'
+              >
+
+                <SidebarMenus />
+
+              </Sidebar>
+              <Sidebar.Pusher dimmed={visible}>
+                <Segment basic>
+                  {this.renderContainer()}
+                </Segment>
+              </Sidebar.Pusher>
+            </Sidebar.Pushable>
+
           </Suspense>
         </Router>
       </Container>
@@ -61,4 +88,8 @@ class App extends React.Component {
   };
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  visible: state.visible
+});
+
+export default connect(mapStateToProps, { sidebarPusher })(App);

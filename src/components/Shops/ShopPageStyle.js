@@ -1,6 +1,19 @@
 import _ from 'lodash';
-import React, { Fragment } from 'react';
-import { Header, Container, Item, Label, Popup, Dropdown } from 'semantic-ui-react';
+import React from 'react';
+import { Header, Menu, Grid, Container, Item, Label, Popup, Dropdown } from 'semantic-ui-react';
+
+const divStyle = {
+  textAlign: 'center',
+  width: '11%',
+  marginTop: '4%',
+  borderRight: '15px solid whitesmoke',
+  backgroundColor: 'GhostWhite'
+};
+
+const MenuStyle = {
+  fontSize: '18px',
+  borderRightColor: 'transparent'
+};
 
 const sortOpts = [
   { key: 'nameAZ', value: 'nameAZ', sortby: 'company', orders: 'asc', text: 'A to Z' },
@@ -80,24 +93,39 @@ class ShopPage extends React.Component {
   render() {
     const { value, sortby, orders } = this.state;
     return (
-      <Fragment>
-        <Header as='h4' style={{ fontSize: '20px', marginBottom: '5px' }} dividing>
-          SHOPS
-        </Header>
-        <Container textAlign='right'>
+      <Grid>
+        <Grid.Row columns={2} >
+          <Grid.Column width={2}>
+            <div className='ui left fixed vertical menu' style={divStyle} stackable='true'>
+              <div style={{ marginTop: '5%' }}>
+                <Menu pointing secondary vertical fluid style={MenuStyle}>
+                  <Menu.Item>
+                    Category
+                  </Menu.Item>
+                </Menu>
+              </div>
+            </div>
+          </Grid.Column>
+          <Grid.Column width={13}>
+            <Header as='h4' style={{ fontSize: '20px', marginBottom: '5px' }} dividing>
+              SHOPS
+            </Header>
+            <Container textAlign='right'>
 
-          <pre style={{ fontSize: '130' }}>
-            Sort by: <Dropdown selection options={sortOpts} defaultValue={value}
-              onChange={this.handleSortedSources} />
-          </pre>
+              <pre style={{ fontSize: '130' }}>
+                Sort by: <Dropdown selection options={sortOpts} defaultValue={value}
+                  onChange={this.handleSortedSources} />
+              </pre>
 
-        </Container>
-        <Item.Group divided unstackable>
+            </Container>
+            <Item.Group divided unstackable>
 
-          {this.RenderLists(sortby, orders)}
+              {this.RenderLists(sortby, orders)}
 
-        </Item.Group>
-      </Fragment>
+            </Item.Group>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   };
 };

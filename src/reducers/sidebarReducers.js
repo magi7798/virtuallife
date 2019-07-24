@@ -1,8 +1,8 @@
-export default (state = '', action) => {
+
+
+export default (state = false, action) => {
   switch (action.type) {
-    case 'PAGE_STATUS':
-      return action.payload;
-    case 'SIGNIN_STATUS':
+    case 'SIDEBAR_PUSHER':
       return action.payload;
     default:
       return state;

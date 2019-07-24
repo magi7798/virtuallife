@@ -22,7 +22,19 @@ export const InitialMenus = [
   }
 ];
 
-export const MemberMenus = [
+export const sidebarMenus = [
+  {
+    name: 'Signin',
+    path: '/signin',
+    childnode: 
+      <Fragment>
+        <p>Sign in to enjoy virtual life.</p>
+        <Button basic color='blue'>
+          <Icon name='user' />
+          Sign in
+        </Button>
+      </Fragment>
+  },
   {
     name: 'Home',
     path: '/',
@@ -42,14 +54,14 @@ export const MemberMenus = [
 
 export const SettingsMenus = [
   {
-    name: 'Account',
+    name: 'My Account',
     path: '/settings/account',
-    childnode: 'Account'
+    childnode: 'My Account'
   }
 ];
 
 export const CategoryMenus = [
-  ...MemberMenus,
+  
   {
     name: 'Shop Category',
     path: null,
