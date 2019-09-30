@@ -23,18 +23,14 @@ export const InitialMenus = [
 ];
 
 export const sidebarMenus = [
-  {
-    name: 'Signin',
-    path: '/signin',
-    childnode: 
-      <Fragment>
-        <p>Sign in to enjoy virtual life.</p>
-        <Button basic color='blue'>
-          <Icon name='user' />
-          Sign in
-        </Button>
-      </Fragment>
-  },
+  // {
+  //   name: 'Signin',
+  //   path: '/signin',
+  //   childnode: 
+  //     <Fragment>
+  //       <p>Hello User!</p>   
+  //     </Fragment>
+  // },
   {
     name: 'Home',
     path: '/',
@@ -49,6 +45,11 @@ export const sidebarMenus = [
     name: 'My Shop',
     path: '/myshop',
     childnode: 'My Shop'
+  },
+  {
+    name: 'Sign Out',
+    path: '/',
+    childnode: 'Sign Out'
   }
 ];
 

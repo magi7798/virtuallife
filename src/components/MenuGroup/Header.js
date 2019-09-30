@@ -53,13 +53,29 @@ class Header extends React.Component {
   };
 
   renderLeftMenu = () => {
-    const MenuNames = HeaderLeft;
-    return this.renderTabs(MenuNames);
+    const menuNames = HeaderLeft;
+    return this.renderTabs(menuNames);
   };
-
+  
   renderRightMenu = () => {
-    const MenuNames = HeaderRight;
-    return this.renderTabs(MenuNames);
+    const menuNames = HeaderRight;
+    const signIn = [
+      {
+        name: 'Sign in',
+        path: '/signin',
+        childnode:
+          <Button basic color='blue' >
+            <Icon name='user'/>
+            Sign in
+          </Button>
+      }
+    ];
+    if (this.props.isSigned !== true) {
+      console.log('is Signed:', this.props.isSigned);
+      return this.renderTabs(signIn);
+    };
+    console.log('is Signed:', this.props.isSigned);
+    return this.renderTabs(menuNames);
   };
 
   render() {
@@ -68,9 +84,7 @@ class Header extends React.Component {
 
         <Menu fixed='top' borderless style={menuStyle}>
 
-          <Button basic size='mini' onClick={this.handleShowClick}>
-            <Icon name='sidebar' size='large' />
-          </Button>
+          <Button basic color='blue' icon='sidebar' onClick={this.handleShowClick} style={{ marginTop: '10px', marginBottom: '10px' }}/>
 
           {this.renderLeftMenu()}
 
@@ -85,4 +99,10 @@ class Header extends React.Component {
   };
 };
 
-export default connect(null, { sidebarPusher })(Header);
+const mapStateToProps = (state) => (
+  {
+    isSigned: state.isSigned
+  }
+);
+
+export default connect(mapStateToProps, { sidebarPusher })(Header);

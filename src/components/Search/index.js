@@ -1,24 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import ItemPageStyle from '../Products/ItemPageStyle';
+import ItemPage from '../Products/ItemPageStyle';
 
-class SearchResults extends React.Component {
-  state = { results: [] };
-
-  componentDidUpdate = () => {
-    console.log('searched results: ', this.state.results);
-  };
-
-  setResults = (results) => {
-    this.setState({ results });
-  };
-
+class SearchResultPage extends React.Component {  
   render() {
-    const { results } = this.state;
+    const { results } = this.props;
+    console.log('result page: ', results);
     return (
-      <ItemPageStyle sources={results} />
+      <ItemPage sources={results} />
     );
   };
 };
 
-export default SearchResults;
+const mapStateToProps = (state) => ({
+  results: state.SearchResult.results
+});
+
+export default connect(mapStateToProps)(SearchResultPage);
+
+

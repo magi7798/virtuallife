@@ -1,23 +1,48 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Button, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-import { sidebarPusher } from '../../actions';
+import { fetchMemberMenus, sidebarPusher } from '../../actions';
 import { sidebarMenus } from './MenuLists/SidebarLists';
 
 class SidebarMenus extends React.Component {
 
   menuItems = () => {
-    const menus = sidebarMenus;
+    const { isSigned } = this.props;
+    let menus = sidebarMenus;
+    if (!isSigned) {
+      menus = [
+        {
+          name: 'Signin',
+          path: '/signin',
+          childnode: 
+            <Fragment>
+              <p>Sign in to enjoy virtual life.</p>
+              <Button basic color='blue'>
+                <Icon name='user' />
+                Sign in
+              </Button>
+            </Fragment>
+        }
+      ];
+    }; 
 
-    return menus.map((menu, index) => {
+    const menuItems = menus.map((menu, index) => {
       return (
-        <Menu.Item key={index} as={Link} to={menu.path} onClick={() => this.props.sidebarPusher(false)}>
+        <Menu.Item key={index} as={Link} to={menu.path} 
+          onClick={() => {
+            this.props.sidebarPusher(false);
+            if (menu.name === 'Sign Out')
+              this.props.fetchMemberMenus(false);
+            }
+          }>
           {menu.childnode}
         </Menu.Item>
       );
     });
+
+    return menuItems;
   };
 
   render() {
@@ -29,4 +54,10 @@ class SidebarMenus extends React.Component {
   };
 };
 
-export default connect(null, { sidebarPusher })(SidebarMenus);
+const mapStateToProps = (state) => (
+  {
+    isSigned: state.isSigned
+  }
+);
+
+export default connect(mapStateToProps, { fetchMemberMenus, sidebarPusher })(SidebarMenus);

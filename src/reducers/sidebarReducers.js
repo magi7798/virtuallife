@@ -1,6 +1,6 @@
+const INITIAL_STATE = false; 
 
-
-export default (state = false, action) => {
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'SIDEBAR_PUSHER':
       return action.payload;

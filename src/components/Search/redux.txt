@@ -1,12 +1,13 @@
  ex) search samsung
-1. backend will give results of the search 'samsung' and url will be like localhost:3000/ -> 
+1. backend will give results of the search 'samsung' and url will be like localhost:3000/ (Using local state) -> 
 result: [{
   name: 'samsung galaxy 10 5g'
   code: 'samsung_sawfwqsd_10_5g' -> for simplify this, just use c_1,c_2,c_3,c_4,c_5 
+  type: 'shop' | 'product'
 },
 {....}]
-2. if user select 'samsung galaxy 10 5g', 
-frontend request to backend with 'code' and url will be like localhost:3000/search?code=c_1
+2. if user select 'samsung galaxy 10 5g', (Using Redux state)
+frontend request to backend with 'code' and url will be like localhost:3000/search?code=c_1&type=shop
 
 result: [{
   price: '$123',

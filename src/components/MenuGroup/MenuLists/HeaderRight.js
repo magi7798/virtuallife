@@ -27,17 +27,12 @@ export default [
       </Fragment>
   },
   {
-    name: 'Sign in',
-    path: '/signin',
-    childnode:
-      <Button basic color='blue' >
-        <Icon name='user'/>
-        Sign in
-      </Button>
-  },
-  {
     name: 'Settings',
     path: '/settings/account',
-    childnode: 'Settings'
+    childnode:
+      <Fragment>
+        <Icon name='cogs' />
+        Settings
+      </Fragment>
   }
 ];

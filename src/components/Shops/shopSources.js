@@ -1,5 +1,6 @@
 export default [
   {
+    type: 'shop',
     imageSrc: 'https://react.semantic-ui.com/images/wireframe/image.png',
     company: 'Samsung',
     meta: 'No1 Electronic Company in the world',
@@ -9,6 +10,7 @@ export default [
     sold: '1100000'
   },
   {
+    type: 'shop',
     imageSrc: 'https://react.semantic-ui.com/images/wireframe/image.png',
     company: 'Apple',
     meta: 'No1 Electronic Company in the world',
@@ -18,6 +20,7 @@ export default [
     sold: '2100000'
   },
   {
+    type: 'shop',
     imageSrc: 'https://react.semantic-ui.com/images/wireframe/image.png',
     company: 'HP',
     meta: 'No1 Electronic Company in the world',
@@ -27,6 +30,7 @@ export default [
     sold: '150000'
   },
   {
+    type: 'shop',
     imageSrc: 'https://react.semantic-ui.com/images/wireframe/image.png',
     company: 'Philips',
     meta: 'No1 Electronic Company in the world',
