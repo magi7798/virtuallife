@@ -65,7 +65,6 @@ class MySpace extends React.Component {
     return (
       <Comment.Group threaded>
         
-
         <Comment>
           <Comment.Avatar as='a' src='/images/avatar/small/matt.jpg' />
           <Comment.Content>
